@@ -135,14 +135,24 @@ export interface OutfitItem {
   position: ImagePosition;
 }
 
+// 已选服饰信息
+export interface SelectedClothInfo {
+  category: CategoryType;
+  clothType: ClothType;
+  name: string;
+  imagePath: string;
+}
+
 export interface SavedOutfit {
   id: string;
   name: string;
   items: OutfitItem[];
   placedImages: PlacedImage[];
+  selectedCloths: SelectedClothInfo[];  // 已选服饰详细信息
+  draggableImages: DraggableImage[];    // 拖拽图片的位置、大小、旋转信息
+  thumbnail?: string;                    // 展示板截图
   createdAt: string;
   updatedAt: string;
-  thumbnail?: string;
 }
 
 export interface UserInfo {

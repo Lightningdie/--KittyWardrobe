@@ -11,9 +11,87 @@ import { DEFAULT_CLOTH_TYPE } from '../utils/constants';
 import { preloadImages } from '../data/clothesData';
 import { saveOutfit, saveUploadedCloth } from '../utils/storage';
 import { getAllCategories } from '../data/clothesData';
-import { ClothType, PlacedImage, CategoryType, DraggableImage as DraggableImageType } from '../types';
+import { ClothType, PlacedImage, CategoryType, DraggableImage as DraggableImageType, SelectedClothInfo } from '../types';
 import type { UploadProps } from 'antd';
-import './EditOutfitPage.css';
+import './pages.css';
+
+// 生成展示板截图的工具函数
+function generateThumbnail(draggableImages: DraggableImageType[]): Promise<string> {
+  return new Promise((resolve) => {
+    if (draggableImages.length === 0) {
+      resolve('');
+      return;
+    }
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    if (!ctx) {
+      resolve('');
+      return;
+    }
+
+    // 计算边界框
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    draggableImages.forEach(img => {
+      minX = Math.min(minX, img.x);
+      minY = Math.min(minY, img.y);
+      maxX = Math.max(maxX, img.x + img.width);
+      maxY = Math.max(maxY, img.y + img.height);
+    });
+
+    // 添加padding
+    const padding = 20;
+    minX = Math.max(0, minX - padding);
+    minY = Math.max(0, minY - padding);
+    maxX = maxX + padding;
+    maxY = maxY + padding;
+
+    const width = maxX - minX;
+    const height = maxY - minY;
+
+    // 设置画布大小（限制最大尺寸）
+    const maxSize = 400;
+    const scale = Math.min(1, maxSize / Math.max(width, height));
+    canvas.width = width * scale;
+    canvas.height = height * scale;
+
+    // 设置白色背景
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // 加载并绘制所有图片
+    const imagePromises = draggableImages.map(imgData => {
+      return new Promise<void>((imgResolve) => {
+        const img = new window.Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => {
+          ctx.save();
+          
+          // 计算相对位置
+          const x = (imgData.x - minX) * scale;
+          const y = (imgData.y - minY) * scale;
+          const w = imgData.width * scale;
+          const h = imgData.height * scale;
+
+          // 应用旋转
+          ctx.translate(x + w / 2, y + h / 2);
+          ctx.rotate((imgData.rotation * Math.PI) / 180);
+          ctx.drawImage(img, -w / 2, -h / 2, w, h);
+          
+          ctx.restore();
+          imgResolve();
+        };
+        img.onerror = () => imgResolve();
+        img.src = imgData.src;
+      });
+    });
+
+    Promise.all(imagePromises).then(() => {
+      resolve(canvas.toDataURL('image/png', 0.8));
+    });
+  });
+}
 
 const { Option } = Select;
 
@@ -93,23 +171,47 @@ export default function EditOutfitPage() {
     setDraggableImages(prev => prev.filter(img => img.id !== id));
   };
 
-  const handleSaveOutfit = () => {
+  const handleSaveOutfit = async () => {
     if (!outfitName.trim()) {
       message.warning('请输入穿搭名称');
       return;
     }
+
+    // 收集已选服饰的详细信息
+    const selectedClothsInfo: SelectedClothInfo[] = [];
+    Object.entries(selectedCloths).forEach(([category, clothType]) => {
+      if (clothType) {
+        const categoryConfig = categories.find(cat => cat.category === category);
+        const item = categoryConfig?.items.find(item => item.id === clothType);
+        if (item) {
+          selectedClothsInfo.push({
+            category: category as CategoryType,
+            clothType: clothType,
+            name: item.name,
+            imagePath: item.imagePath
+          });
+        }
+      }
+    });
+
+    // 生成展示板截图
+    message.loading({ content: '正在生成穿搭预览图...', key: 'saving' });
+    const thumbnail = await generateThumbnail(draggableImages);
 
     const newOutfit = {
       id: `outfit_${Date.now()}`,
       name: outfitName,
       items: [],
       placedImages: placedImages,
+      selectedCloths: selectedClothsInfo,
+      draggableImages: draggableImages,
+      thumbnail: thumbnail,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
 
     saveOutfit(newOutfit);
-    message.success('穿搭保存成功！');
+    message.success({ content: '穿搭保存成功！', key: 'saving' });
     setSaveModalVisible(false);
     setOutfitName('');
   };

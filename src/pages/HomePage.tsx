@@ -1,13 +1,18 @@
 import React from 'react';
 import { Card, Row, Col, Button, Avatar } from 'antd';
-import { UserOutlined, EditOutlined, FolderOutlined } from '@ant-design/icons';
+import { UserOutlined, EditOutlined, FolderOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import { getUserInfo } from '../utils/storage';
-import './HomePage.css';
+import { getUserInfo, clearUserData } from '../utils/storage';
+import './pages.css';
 
 export default function HomePage() {
   const navigate = useNavigate();
   const userInfo = getUserInfo();
+
+  const handleLogout = () => {
+    clearUserData();
+    navigate('/login');
+  };
 
   return (
     <div className="HomePage">
@@ -17,7 +22,18 @@ export default function HomePage() {
 
       <div className="HomePageContent">
         {/* 用户信息卡片 */}
-        <Card className="UserInfoCard" title="个人信息" bordered={false}>
+        <Card className="UserInfoCard" title="个人信息" bordered={false}
+          extra={
+            <Button 
+              type="text" 
+              danger
+              icon={<LogoutOutlined />}
+              onClick={handleLogout}
+            >
+              退出登录
+            </Button>
+          }
+        >
           <div className="UserInfoContent">
             <Avatar size={48} icon={<UserOutlined />} src={userInfo?.avatar} />
             <div className="UserInfoDetails">

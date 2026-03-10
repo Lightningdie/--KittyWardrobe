@@ -4,7 +4,7 @@ import { HomeOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { getSavedOutfits, deleteOutfit } from '../utils/storage';
 import { SavedOutfit } from '../types';
-import './SavedOutfitsPage.css';
+import './pages.css';
 
 export default function SavedOutfitsPage() {
   const navigate = useNavigate();
@@ -68,6 +68,11 @@ export default function SavedOutfitsPage() {
                 <Card
                   hoverable
                   className="OutfitCard"
+                  cover={outfit.thumbnail && (
+                    <div className="OutfitCardCover">
+                      <img src={outfit.thumbnail} alt={outfit.name} />
+                    </div>
+                  )}
                   actions={[
                     <Button
                       type="text"
@@ -95,8 +100,12 @@ export default function SavedOutfitsPage() {
                   <div className="OutfitCardContent">
                     <h3>{outfit.name}</h3>
                     <p className="OutfitDate">创建时间: {formatDate(outfit.createdAt)}</p>
-                    {outfit.placedImages && outfit.placedImages.length > 0 && (
-                      <p className="OutfitItems">包含 {outfit.placedImages.length} 个服饰</p>
+                    {outfit.selectedCloths && outfit.selectedCloths.length > 0 ? (
+                      <p className="OutfitItems">包含 {outfit.selectedCloths.length} 件服饰</p>
+                    ) : outfit.draggableImages && outfit.draggableImages.length > 0 ? (
+                      <p className="OutfitItems">包含 {outfit.draggableImages.length} 件服饰</p>
+                    ) : outfit.placedImages && outfit.placedImages.length > 0 && (
+                      <p className="OutfitItems">包含 {outfit.placedImages.length} 件服饰</p>
                     )}
                   </div>
                 </Card>
@@ -119,9 +128,62 @@ export default function SavedOutfitsPage() {
       >
         {previewOutfit && (
           <div className="OutfitPreview">
-            <p><strong>创建时间:</strong> {formatDate(previewOutfit.createdAt)}</p>
-            <p><strong>更新时间:</strong> {formatDate(previewOutfit.updatedAt)}</p>
-            {previewOutfit.placedImages && previewOutfit.placedImages.length > 0 && (
+            <div className="PreviewMeta">
+              <p><strong>创建时间:</strong> {formatDate(previewOutfit.createdAt)}</p>
+              <p><strong>更新时间:</strong> {formatDate(previewOutfit.updatedAt)}</p>
+            </div>
+
+            {/* 展示板摆放预览图 */}
+            {previewOutfit.thumbnail && (
+              <div className="PreviewThumbnail">
+                <h4>穿搭效果图</h4>
+                <div className="ThumbnailContainer">
+                  <img src={previewOutfit.thumbnail} alt="穿搭效果图" />
+                </div>
+              </div>
+            )}
+
+            {/* 已选服饰信息 */}
+            {previewOutfit.selectedCloths && previewOutfit.selectedCloths.length > 0 && (
+              <div className="PreviewSelectedCloths">
+                <h4>已选服饰</h4>
+                <div className="SelectedClothsList">
+                  {previewOutfit.selectedCloths.map((cloth, index) => (
+                    <div key={index} className="SelectedClothPreviewItem">
+                      <img src={cloth.imagePath} alt={cloth.name} className="ClothPreviewImage" />
+                      <div className="ClothPreviewInfo">
+                        <span className="ClothPreviewCategory">{cloth.category}</span>
+                        <span className="ClothPreviewName">{cloth.name}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* 拖拽图片位置信息（详细信息） */}
+            {previewOutfit.draggableImages && previewOutfit.draggableImages.length > 0 && (
+              <div className="PreviewDraggableInfo">
+                <h4>服饰摆放详情</h4>
+                <div className="DraggableImagesList">
+                  {previewOutfit.draggableImages.map((img, index) => (
+                    <div key={index} className="DraggableImagePreviewItem">
+                      <img src={img.src} alt={`服饰 ${index + 1}`} className="DraggablePreviewImage" />
+                      <div className="DraggablePreviewDetails">
+                        <span>位置: ({Math.round(img.x)}, {Math.round(img.y)})</span>
+                        <span>大小: {Math.round(img.width)} × {Math.round(img.height)}</span>
+                        <span>旋转: {Math.round(img.rotation)}°</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* 兼容旧数据：显示placedImages */}
+            {(!previewOutfit.selectedCloths || previewOutfit.selectedCloths.length === 0) && 
+             (!previewOutfit.draggableImages || previewOutfit.draggableImages.length === 0) &&
+             previewOutfit.placedImages && previewOutfit.placedImages.length > 0 && (
               <div className="PreviewImages">
                 <h4>包含的服饰:</h4>
                 <div className="PreviewImagesList">

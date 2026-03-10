@@ -1,0 +1,188 @@
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].oneOf[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].oneOf[0].use[2]!./node_modules/less-loader/dist/cjs.js!./src/pages/outfits/index.less ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+.outfits-page {
+  min-height: 100vh;
+  padding: 20rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.header {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 24rpx;
+}
+.title {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #333;
+}
+.count {
+  font-size: 26rpx;
+  color: #666;
+}
+.empty {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 80rpx 0;
+}
+.empty-icon {
+  font-size: 100rpx;
+  margin-bottom: 24rpx;
+}
+.empty-text {
+  font-size: 30rpx;
+  color: #999;
+  margin-bottom: 32rpx;
+}
+.btn {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 20rpx 48rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.btn-primary {
+  background: -webkit-linear-gradient(315deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+}
+.outfit-list {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20rpx;
+}
+.outfit-card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  -webkit-box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+.outfit-header {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 16rpx;
+}
+.outfit-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+.outfit-date {
+  font-size: 24rpx;
+  color: #999;
+}
+.outfit-preview {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  gap: 12rpx;
+  min-height: 120rpx;
+  background: #f9f9f9;
+  border-radius: 12rpx;
+  padding: 16rpx;
+  margin-bottom: 16rpx;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.preview-image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 8rpx;
+  background: #fff;
+}
+.no-images {
+  color: #999;
+  font-size: 26rpx;
+  width: 100%;
+  text-align: center;
+}
+.more-count {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 8rpx;
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.outfit-actions {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  gap: 24rpx;
+}
+.action-btn {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8rpx;
+  padding: 12rpx 24rpx;
+  border-radius: 20rpx;
+  background: #f5f5f5;
+  font-size: 24rpx;
+  color: #666;
+}
+.action-btn:active {
+  background: #e0e0e0;
+}
+.action-icon {
+  font-size: 28rpx;
+}
+

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { getUserInfo, saveUserInfo } from '../utils/storage';
 import { UserInfo } from '../types';
 import type { UploadProps } from 'antd';
-import './ProfilePage.css';
+import './pages.css';
 
 export default function ProfilePage() {
   const navigate = useNavigate();

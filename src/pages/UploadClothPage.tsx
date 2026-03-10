@@ -6,7 +6,7 @@ import { saveUploadedCloth } from '../utils/storage';
 import { CategoryType, ClothType } from '../types';
 import { getAllCategories } from '../data/clothesData';
 import type { UploadProps } from 'antd';
-import './UploadClothPage.css';
+import './pages.css';
 
 const { Option } = Select;
 

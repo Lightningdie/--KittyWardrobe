@@ -21,7 +21,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "cd server && node index.js",
+    "server:install": "cd server && npm install",
+    "dev": "concurrently \"npm run server\" \"npm start\"",
+    "mp:install": "cd miniprogram && npm install",
+    "mp:dev": "cd miniprogram && npm run dev:weapp",
+    "mp:build": "cd miniprogram && npm run build:weapp",
+    "mp:h5": "cd miniprogram && npm run dev:h5"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +52,7 @@
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "concurrently": "^8.2.2",
     "typescript": "^5.9.3"
   }
 }
