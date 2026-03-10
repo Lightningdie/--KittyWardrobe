@@ -1,0 +1,12 @@
+# 请在此目录放置 tabbar 图标文件
+# 需要的图标：
+# - home.png (首页-未选中)
+# - home-active.png (首页-选中)
+# - edit.png (搭配-未选中)
+# - edit-active.png (搭配-选中)
+# - profile.png (我的-未选中)
+# - profile-active.png (我的-选中)
+#
+# 图标尺寸建议：81px x 81px
+# 格式：PNG（支持透明背景）
+

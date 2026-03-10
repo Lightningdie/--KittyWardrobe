@@ -1,0 +1,962 @@
+/* =====================================================
+   Pages 样式合集
+   ===================================================== */
+
+/* =====================================================
+   EditOutfitPage 样式
+   ===================================================== */
+.EditOutfitPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.EditOutfitHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+.EditOutfitTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.BackButton,
+.SaveButton {
+  min-width: 100px;
+}
+
+/* PC端布局优化 */
+@media (min-width: 769px) {
+  .EditOutfitPage {
+    flex-direction: column;
+  }
+  
+  .EditOutfitHeader {
+    padding: 20px 32px;
+  }
+  
+  .EditOutfitTitle {
+    font-size: 1.8rem;
+  }
+}
+
+.DraggableImageArea {
+  position: relative;
+  min-height: 300px;
+  margin: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 2px dashed #e0e0e0;
+}
+
+.DraggableImageArea::before {
+  content: '拖拽已选服饰到此处，可调整位置、大小和方向';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #999;
+  font-size: 0.875rem;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.DraggableImageArea.hasImages::before {
+  display: none;
+}
+
+.SelectedClothsArea {
+  padding: 20px;
+  background: white;
+  margin: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-height: 150px;
+}
+
+.SelectedClothsTitle {
+  margin: 0 0 16px 0;
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.SelectedClothsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 16px;
+}
+
+.SelectedClothItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  background: #f5f7fa;
+  border-radius: 8px;
+  position: relative;
+}
+
+.SelectedClothLabel {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.SelectedClothContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.SelectedClothName {
+  font-size: 0.75rem;
+  color: #333;
+  text-align: center;
+}
+
+.RemoveClothButton {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  color: #ff4d4f;
+  background: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.RemoveClothButton:hover {
+  background: #ff4d4f;
+  color: white;
+}
+
+.UploadPreview {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 移动端布局 */
+@media (max-width: 768px) {
+  .EditOutfitHeader {
+    padding: 12px 16px;
+  }
+  
+  .EditOutfitTitle {
+    font-size: 1.2rem;
+  }
+  
+  .BackButton,
+  .SaveButton {
+    min-width: 80px;
+    font-size: 12px;
+  }
+  
+  .SelectedClothsArea {
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  .SelectedClothsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 12px;
+  }
+  
+  .DraggableImageArea {
+    min-height: 410px;
+    margin: 5px;
+  }
+  
+  .DraggableImageArea::before {
+    font-size: 0.75rem;
+    padding: 0 10px;
+    text-align: center;
+  }
+}
+
+/* =====================================================
+   HomePage 样式
+   ===================================================== */
+.HomePage {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.HomePageHeader {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+}
+
+.HomePageTitle {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+}
+
+.HomePageContent {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.UserInfoCard {
+  margin-bottom: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.UserInfoContent {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: nowrap;
+}
+
+.UserInfoCard :global(.ant-card-head-title) {
+  padding: 12px 0;
+  font-size: 1rem;
+}
+
+.UserInfoDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.UserInfoDetails h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.UserInfoDetails p {
+  margin: 0;
+  color: #666;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.FunctionCards {
+  margin-top: 24px;
+}
+
+.FunctionCard {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+}
+
+.FunctionCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.FunctionCardContent {
+  text-align: center;
+  padding: 20px;
+}
+
+.FunctionIcon {
+  font-size: 48px;
+  color: #667eea;
+  margin-bottom: 16px;
+}
+
+.FunctionCardContent h3 {
+  margin: 16px 0 8px 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.FunctionCardContent p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .HomePage {
+    padding: 15px;
+    padding-bottom: 30px;
+  }
+  
+  .HomePageHeader {
+    padding: 20px 15px;
+    margin-bottom: 30px;
+  }
+  
+  .HomePageTitle {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+  
+  .UserInfoCard {
+    margin-bottom: 20px;
+  }
+  
+  .UserInfoCard :global(.ant-card-head-title) {
+    padding: 10px 0;
+    font-size: 0.9rem;
+  }
+  
+  .UserInfoContent {
+    flex-wrap: nowrap;
+    gap: 12px;
+    align-items: center;
+  }
+  
+  .UserInfoDetails {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+  }
+  
+  .UserInfoDetails h3 {
+    font-size: 0.9rem;
+  }
+  
+  .UserInfoDetails p {
+    font-size: 0.8rem;
+  }
+  
+  .FunctionCardContent {
+    padding: 16px;
+  }
+  
+  .FunctionIcon {
+    font-size: 36px;
+  }
+}
+
+/* iPhone 14 Pro Max 和其他大屏设备 */
+@media (min-width: 428px) and (max-width: 430px) {
+  .HomePage {
+    padding: 20px;
+    padding-bottom: 50px;
+  }
+  
+  .HomePageHeader {
+    padding: 25px 20px;
+  }
+  
+  .HomePageTitle {
+    font-size: 2.2rem;
+  }
+}
+
+/* =====================================================
+   SavedOutfitsPage 样式
+   ===================================================== */
+.SavedOutfitsPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+}
+
+.SavedOutfitsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.SavedOutfitsTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.SavedOutfitsContent {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.OutfitCard {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.OutfitCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.OutfitCardCover {
+  height: 180px;
+  background: #f5f7fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.OutfitCardCover img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.OutfitCardContent {
+  text-align: center;
+}
+
+.OutfitCardContent h3 {
+  margin: 0 0 12px 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.OutfitDate {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 8px 0;
+}
+
+.OutfitItems {
+  color: #999;
+  font-size: 0.85rem;
+  margin: 8px 0 0 0;
+}
+
+.OutfitPreview {
+  padding: 20px 0;
+}
+
+.OutfitPreview p {
+  margin: 12px 0;
+  color: #666;
+}
+
+.PreviewImages {
+  margin-top: 20px;
+}
+
+.PreviewImages h4 {
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.PreviewImagesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.PreviewImageItem {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.PreviewImageItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .SavedOutfitsHeader {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .SavedOutfitsTitle {
+    font-size: 1.5rem;
+  }
+}
+
+/* =====================================================
+   ProfilePage 样式
+   ===================================================== */
+.ProfilePage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+}
+
+.ProfileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ProfileTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.ProfileContent {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ProfileCard {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ProfileForm {
+  padding: 20px 0;
+}
+
+.AvatarItem {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.AvatarItem :global(.ant-upload) {
+  margin: 0 auto;
+}
+
+.AvatarWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.SaveSuccessMessage {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(82, 196, 26, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  animation: slideDown 0.3s ease-out;
+  z-index: 10;
+}
+
+.SaveSuccessMessage :global(.anticon) {
+  font-size: 16px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .ProfileHeader {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .ProfileTitle {
+    font-size: 1.5rem;
+  }
+}
+
+/* =====================================================
+   UploadClothPage 样式
+   ===================================================== */
+.UploadClothPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+}
+
+.UploadClothHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.UploadClothTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.UploadClothContent {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.UploadClothCard {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.UploadClothForm {
+  padding: 20px 0;
+}
+
+.UploadClothPage .UploadPreview {
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.UploadClothPage .UploadPreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .UploadClothHeader {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .UploadClothTitle {
+    font-size: 1.5rem;
+  }
+}
+
+/* =====================================================
+   LoginPage 样式
+   ===================================================== */
+.LoginPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.LoginHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.LoginTitle {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+}
+
+.LoginSubtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.LoginContent {
+  width: 100%;
+  max-width: 420px;
+}
+
+.LoginCard {
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.LoginCard :global(.ant-card-body) {
+  padding: 32px;
+}
+
+.LoginCard :global(.ant-tabs-nav) {
+  margin-bottom: 24px;
+}
+
+.LoginCard :global(.ant-tabs-tab) {
+  font-size: 16px;
+  padding: 12px 24px;
+}
+
+.LoginForm,
+.RegisterForm {
+  padding-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .LoginTitle {
+    font-size: 2rem;
+  }
+  
+  .LoginContent {
+    max-width: 100%;
+  }
+  
+  .LoginCard :global(.ant-card-body) {
+    padding: 24px 16px;
+  }
+}
+
+/* =====================================================
+   穿搭预览弹窗样式
+   ===================================================== */
+.OutfitPreview {
+  padding: 0;
+}
+
+.PreviewMeta {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 20px;
+}
+
+.PreviewMeta p {
+  margin: 8px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* 穿搭效果图 */
+.PreviewThumbnail {
+  margin-bottom: 24px;
+}
+
+.PreviewThumbnail h4 {
+  margin: 0 0 12px 0;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.ThumbnailContainer {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  border: 1px solid #e8e8e8;
+}
+
+.ThumbnailContainer img {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 已选服饰列表 */
+.PreviewSelectedCloths {
+  margin-bottom: 24px;
+}
+
+.PreviewSelectedCloths h4 {
+  margin: 0 0 12px 0;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.SelectedClothsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.SelectedClothPreviewItem {
+  background: #f5f7fa;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.SelectedClothPreviewItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ClothPreviewImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ClothPreviewInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ClothPreviewCategory {
+  font-size: 0.75rem;
+  color: #667eea;
+  font-weight: 500;
+}
+
+.ClothPreviewName {
+  font-size: 0.85rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* 服饰摆放详情 */
+.PreviewDraggableInfo {
+  margin-bottom: 24px;
+}
+
+.PreviewDraggableInfo h4 {
+  margin: 0 0 12px 0;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.DraggableImagesList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.DraggableImagePreviewItem {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid #e8e8e8;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.DraggableImagePreviewItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.DraggablePreviewImage {
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f9f9f9;
+  margin-bottom: 8px;
+}
+
+.DraggablePreviewDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.DraggablePreviewDetails span {
+  padding: 2px 0;
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+  .SelectedClothsList {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 12px;
+  }
+  
+  .SelectedClothPreviewItem {
+    padding: 8px;
+  }
+  
+  .ClothPreviewImage {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .DraggableImagesList {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+  }
+  
+  .DraggablePreviewImage {
+    height: 80px;
+  }
+  
+  .ThumbnailContainer {
+    min-height: 150px;
+    padding: 12px;
+  }
+  
+  .ThumbnailContainer img {
+    max-height: 250px;
+  }
+}
+
